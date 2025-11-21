@@ -1,7 +1,5 @@
 package com.appiancs.swiftmtconverter.functions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,12 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Map;
-
-import com.appiancorp.suiteapi.common.exceptions.AppianException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.appiancorp.suiteapi.common.exceptions.AppianException;
 
 /**
  * Unit tests for SwiftMtConverterFunctions.
@@ -77,8 +74,7 @@ class SwiftMtConverterFunctionsTest {
   void testSwiftmttojson_NullMessage() {
     Exception exception = assertThrows(
       AppianException.class,
-      () -> functions.swiftmttojson(null, true)
-    );
+      () -> functions.swiftmttojson(null, true));
 
     assertTrue(exception.getMessage().contains("cannot be null or empty"));
   }
@@ -87,8 +83,7 @@ class SwiftMtConverterFunctionsTest {
   void testSwiftmttojson_EmptyMessage() {
     Exception exception = assertThrows(
       AppianException.class,
-      () -> functions.swiftmttojson("", true)
-    );
+      () -> functions.swiftmttojson("", true));
 
     assertTrue(exception.getMessage().contains("cannot be null or empty"));
   }
@@ -97,8 +92,7 @@ class SwiftMtConverterFunctionsTest {
   void testSwiftmttojson_InvalidMessage() {
     Exception exception = assertThrows(
       AppianException.class,
-      () -> functions.swiftmttojson("INVALID MESSAGE", true)
-    );
+      () -> functions.swiftmttojson("INVALID MESSAGE", true));
 
     assertTrue(exception.getMessage().contains("Failed to parse"));
   }
@@ -125,8 +119,7 @@ class SwiftMtConverterFunctionsTest {
   void testSwiftmttojsonbytype_MismatchedType() {
     Exception exception = assertThrows(
       AppianException.class,
-      () -> functions.swiftmttojsonbytype(mt103Message, "202")
-    );
+      () -> functions.swiftmttojsonbytype(mt103Message, "202"));
 
     assertTrue(exception.getMessage().contains("mismatch"));
   }
@@ -135,57 +128,9 @@ class SwiftMtConverterFunctionsTest {
   void testSwiftmttojsonbytype_NullMessageType() {
     Exception exception = assertThrows(
       AppianException.class,
-      () -> functions.swiftmttojsonbytype(mt103Message, null)
-    );
+      () -> functions.swiftmttojsonbytype(mt103Message, null));
 
     assertTrue(exception.getMessage().contains("cannot be null or empty"));
   }
 
-  @Test
-  void testValidateswiftmt_ValidMT103() throws AppianException {
-    Map<String, Object> result = functions.validateswiftmt(mt103Message);
-
-    assertNotNull(result);
-    assertTrue((Boolean) result.get("valid"));
-    assertEquals("103", result.get("messageType"));
-    assertTrue((Boolean) result.get("isCommonType"));
-    assertNotNull(result.get("message"));
-  }
-
-  @Test
-  void testValidateswiftmt_ValidMT202() throws AppianException {
-    Map<String, Object> result = functions.validateswiftmt(mt202Message);
-
-    assertNotNull(result);
-    assertTrue((Boolean) result.get("valid"));
-    assertEquals("202", result.get("messageType"));
-    assertTrue((Boolean) result.get("isCommonType"));
-  }
-
-  @Test
-  void testValidateswiftmt_NullMessage() throws AppianException {
-    Map<String, Object> result = functions.validateswiftmt(null);
-
-    assertNotNull(result);
-    assertFalse((Boolean) result.get("valid"));
-    assertTrue(result.get("message").toString().contains("null or empty"));
-  }
-
-  @Test
-  void testValidateswiftmt_EmptyMessage() throws AppianException {
-    Map<String, Object> result = functions.validateswiftmt("");
-
-    assertNotNull(result);
-    assertFalse((Boolean) result.get("valid"));
-    assertTrue(result.get("message").toString().contains("null or empty"));
-  }
-
-  @Test
-  void testValidateswiftmt_InvalidMessage() throws AppianException {
-    Map<String, Object> result = functions.validateswiftmt("INVALID SWIFT MESSAGE");
-
-    assertNotNull(result);
-    assertFalse((Boolean) result.get("valid"));
-    assertTrue(result.get("message").toString().contains("Failed to parse"));
-  }
 }

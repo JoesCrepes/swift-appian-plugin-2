@@ -13,7 +13,7 @@ import com.appiancorp.suiteapi.expression.annotations.Category;
  * together in the Appian Expression Editor.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ ElementType.METHOD, ElementType.TYPE })
 @Category("swiftMessageCategory")
 public @interface SwiftMessageCategory {
 }

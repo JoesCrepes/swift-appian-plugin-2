@@ -1,9 +1,9 @@
 package com.appiancs.swiftmtconverter.utils;
 
-import com.prowidesoftware.swift.model.mt.AbstractMT;
-import com.prowidesoftware.swift.model.SwiftMessage;
-
 import org.apache.commons.lang3.StringUtils;
+
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.mt.AbstractMT;
 
 /**
  * Utility class for parsing SWIFT MT messages.
@@ -15,9 +15,11 @@ public class SwiftMessageParser {
    * Parses a raw SWIFT MT message string into an AbstractMT object.
    * This provides structured access to message fields.
    *
-   * @param mtMessage The raw SWIFT MT message string
+   * @param mtMessage
+   *          The raw SWIFT MT message string
    * @return AbstractMT object representing the parsed message
-   * @throws IllegalArgumentException if the message is null, empty, or invalid
+   * @throws IllegalArgumentException
+   *           if the message is null, empty, or invalid
    */
   public static AbstractMT parseToAbstractMT(String mtMessage) {
     validateMessageInput(mtMessage);
@@ -26,8 +28,7 @@ public class SwiftMessageParser {
       return AbstractMT.parse(mtMessage);
     } catch (Exception e) {
       throw new IllegalArgumentException(
-        "Failed to parse SWIFT MT message: " + e.getMessage(), e
-      );
+        "Failed to parse SWIFT MT message: " + e.getMessage(), e);
     }
   }
 
@@ -35,9 +36,11 @@ public class SwiftMessageParser {
    * Parses a raw SWIFT MT message string into a SwiftMessage object.
    * This provides generic access to message blocks.
    *
-   * @param mtMessage The raw SWIFT MT message string
+   * @param mtMessage
+   *          The raw SWIFT MT message string
    * @return SwiftMessage object representing the parsed message
-   * @throws IllegalArgumentException if the message is null, empty, or invalid
+   * @throws IllegalArgumentException
+   *           if the message is null, empty, or invalid
    */
   public static SwiftMessage parseToSwiftMessage(String mtMessage) {
     validateMessageInput(mtMessage);
@@ -46,18 +49,20 @@ public class SwiftMessageParser {
       return SwiftMessage.parse(mtMessage);
     } catch (Exception e) {
       throw new IllegalArgumentException(
-        "Failed to parse SWIFT message: " + e.getMessage(), e
-      );
+        "Failed to parse SWIFT message: " + e.getMessage(), e);
     }
   }
 
   /**
    * Parses a SWIFT MT message and validates it matches the expected type.
    *
-   * @param mtMessage The raw SWIFT MT message string
-   * @param expectedType The expected message type (e.g., "103", "202")
+   * @param mtMessage
+   *          The raw SWIFT MT message string
+   * @param expectedType
+   *          The expected message type (e.g., "103", "202")
    * @return AbstractMT object representing the parsed message
-   * @throws IllegalArgumentException if the message type doesn't match or parsing fails
+   * @throws IllegalArgumentException
+   *           if the message type doesn't match or parsing fails
    */
   public static AbstractMT parseWithTypeValidation(String mtMessage, String expectedType) {
     validateMessageInput(mtMessage);
@@ -78,9 +83,7 @@ public class SwiftMessageParser {
         String.format(
           "Message type mismatch. Expected MT%s but got MT%s",
           normalizedExpected,
-          normalizedActual
-        )
-      );
+          normalizedActual));
     }
 
     return parsedMessage;
@@ -89,9 +92,11 @@ public class SwiftMessageParser {
   /**
    * Extracts the message type from a raw SWIFT MT message.
    *
-   * @param mtMessage The raw SWIFT MT message string
+   * @param mtMessage
+   *          The raw SWIFT MT message string
    * @return The message type (e.g., "103", "202")
-   * @throws IllegalArgumentException if the message is invalid
+   * @throws IllegalArgumentException
+   *           if the message is invalid
    */
   public static String getMessageType(String mtMessage) {
     AbstractMT parsedMessage = parseToAbstractMT(mtMessage);
@@ -101,8 +106,10 @@ public class SwiftMessageParser {
   /**
    * Validates that the message input is not null or empty.
    *
-   * @param mtMessage The message to validate
-   * @throws IllegalArgumentException if validation fails
+   * @param mtMessage
+   *          The message to validate
+   * @throws IllegalArgumentException
+   *           if validation fails
    */
   private static void validateMessageInput(String mtMessage) {
     if (StringUtils.isBlank(mtMessage)) {
