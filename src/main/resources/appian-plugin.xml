@@ -1,10 +1,13 @@
-<appian-plugin name="COMPLETE_ME" key="COMPLETE_ME">
+<appian-plugin name="SWIFT MT Message Converter" key="com.appiancs.swiftmtconverter">
 
   <plugin-info>
-    <description>COMPLETE_ME</description>
+    <description>Functions to convert SWIFT MT messages to JSON format using Prowide Core library</description>
     <vendor name="Appian Corporation" url="https://www.appian.com" />
     <version>1.0.0</version>
     <application-version min="24.2" />
   </plugin-info>
+
+  <function-category key="swiftMessageCategory" name="SWIFT Message Functions" />
+  <function key="swiftMtConverterFunctions" class="com.appiancs.swiftmtconverter.functions.SwiftMtConverterFunctions" />
 
 </appian-plugin>
