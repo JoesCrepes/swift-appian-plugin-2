@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "Bash(./gradlew compileJava:*)",
-      "Bash(./gradlew build:*)"
+      "Bash(./gradlew build:*)",
+      "Bash(unzip:*)",
+      "Bash(python3:*)",
+      "Bash(jar:*)",
+      "Bash(bc:*)",
+      "Bash(tree:*)",
+      "Bash(expr:*)",
+      "Bash(./gradlew dependencies:*)",
+      "Bash(./gradlew clean:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
