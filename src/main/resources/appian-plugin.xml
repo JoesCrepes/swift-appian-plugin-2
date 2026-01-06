@@ -1,7 +1,7 @@
-<appian-plugin name="SWIFT MT Message Converter" key="com.appiancs.swiftmtconverter">
+<appian-plugin name="SWIFT Message Converter" key="com.appiancs.swiftmtconverter">
 
   <plugin-info>
-    <description>Functions to convert SWIFT MT messages to JSON format using Prowide Core library</description>
+    <description>Functions to convert SWIFT MT and MX messages to JSON format using Prowide Core library</description>
     <vendor name="Appian Corporation" url="https://www.appian.com" />
     <version>1.0.0</version>
     <application-version min="24.2" />
@@ -9,5 +9,6 @@
 
   <function-category key="swiftMessageCategory" name="SWIFT Message Functions" />
   <function key="swiftMtConverterFunctions" class="com.appiancs.swiftmtconverter.functions.SwiftMtConverterFunctions" />
+  <function key="swiftMxConverterFunctions" class="com.appiancs.swiftmtconverter.functions.SwiftMxConverterFunctions" />
 
 </appian-plugin>

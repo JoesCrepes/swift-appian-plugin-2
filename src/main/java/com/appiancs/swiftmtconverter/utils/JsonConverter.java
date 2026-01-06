@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
+import com.prowidesoftware.swift.model.mx.AbstractMX;
 
 /**
  * Utility class for converting SWIFT messages to JSON format.
@@ -59,6 +60,30 @@ public class JsonConverter {
     } catch (Exception e) {
       throw new IllegalArgumentException(
         "Failed to convert message to generic JSON: " + e.getMessage(), e);
+    }
+  }
+
+  /**
+   * Converts an AbstractMX message to JSON with structured field formatting.
+   * This produces JSON with business field labels and structured data.
+   *
+   * @param message
+   *          The AbstractMX message to convert
+   * @return Pretty-printed JSON string
+   * @throws IllegalArgumentException
+   *           if conversion fails
+   */
+  public static String convertMxToStructuredJson(AbstractMX message) {
+    if (message == null) {
+      throw new IllegalArgumentException("Message cannot be null");
+    }
+
+    try {
+      String jsonString = message.toJson();
+      return formatJson(jsonString);
+    } catch (Exception e) {
+      throw new IllegalArgumentException(
+        "Failed to convert MX message to structured JSON: " + e.getMessage(), e);
     }
   }
 
